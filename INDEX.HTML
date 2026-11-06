@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dios Con Nosotros | Check-In</title>
+  <style>
+    body {
+      margin: 0;
+      background: #101010;
+      color: white;
+      font-family: Georgia, serif;
+      text-align: center;
+    }
+    .container {
+      box-sizing: border-box;
+      min-height: 100vh;
+      border: 5px solid #c6a45a;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      width: 180px;
+      max-width: 80%;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #d4af37;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+    p { line-height: 1.6; }
+    #reader {
+      width: 100%;
+      max-width: 350px;
+      margin: 20px auto;
+    }
+    #scanStatus {
+      color: #e0c47b;
+    }
+    .verse {
+      margin-top: 30px;
+      font-style: italic;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <img class="logo"
+      src="https://drive.google.com/thumbnail?id=1wwG6RsZ-IIJ3s26eiOegq1c8eCnKvkNT&sz=w500"
+      alt="Logo de Dios Con Nosotros">
+
+    <h1>¡BIENVENIDOS!</h1>
+
+    <p>Escanee su tarjeta de membresía
+    para registrar su asistencia.</p>
+
+    <div id="reader"></div>
+    <p id="scanStatus">Preparando cámara...</p>
+
+    <p>Registro de miembros y familias</p>
+
+    <p class="verse">
+      Yo me alegré con los que me decían:
+      A la casa de Jehová iremos.
+      <br>Salmos 122:1
+    </p>
+  </main>
+
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script>
+    const status = document.getElementById("scanStatus");
+    let lastScan = "";
+
+    async function startScanner() {
+      if (typeof Html5Qrcode === "undefined") {
+        status.textContent = "No se pudo cargar el escáner.";
+        return;
+      }
+
+      const scanner = new Html5Qrcode("reader");
+
+      try {
+        await scanner.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: { width: 200, height: 200 } },
+          (decodedText) => {
+            if (decodedText === lastScan) return;
+            lastScan = decodedText;
+            status.textContent =
+              "Código detectado: " + decodedText;
+          },
+          () => {}
+        );
+
+        status.textContent =
+          "Cámara lista. Escanee su tarjeta.";
+      } catch (error) {
+        status.textContent =
+          "No se pudo iniciar la cámara: " + error;
+      }
+    }
+
+    window.addEventListener("load", startScanner);
+  </script>
+</body>
+</html>
+
