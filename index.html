@@ -2,83 +2,199 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dios Con Nosotros | Check-In</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Iglesia Dios Con Nosotros | Check-In</title>
+
   <style>
-    body {
-      margin: 0;
-      background: #101010;
-      color: white;
-      font-family: Georgia, serif;
-      text-align: center;
+    :root {
+      --black: #000000;
+      --gold: #D4AF37;
+      --white: #FFFFFF;
     }
-    .container {
+
+    * {
       box-sizing: border-box;
-      min-height: 100vh;
-      border: 5px solid #c6a45a;
-      padding: 30px 15px;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--black) !important;
+      color: var(--white);
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .screen {
+      height: 100vh;
+      height: 100dvh;
+      min-height: 0;
+      overflow: hidden;
+      background: #000000;
+      border: 3px solid var(--gold);
+      outline: 5px solid #000000;
+      outline-offset: -8px;
+      margin: 0;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-evenly;
+      text-align: center;
     }
+
     .logo {
-      width: 180px;
-      max-width: 80%;
-      margin-bottom: 20px;
+      display: block;
+      width: auto;
+      max-width: 90%;
+      height: auto;
+      max-height: 23vh;
+      max-height: 23dvh;
+      object-fit: contain;
+      flex-shrink: 1;
     }
+
     h1 {
-      color: #d4af37;
-      font-size: 32px;
-      letter-spacing: 2px;
+      color: var(--gold);
+      font-size: clamp(24px, 4.5vh, 38px);
+      margin: 2px 0;
+      line-height: 1.15;
     }
-    p { line-height: 1.6; }
+
+    .instruction {
+      color: var(--white);
+      font-size: clamp(16px, 2.6vh, 24px);
+      line-height: 1.3;
+      margin: 2px 0;
+      max-width: 650px;
+    }
+
+    .subtitle {
+      color: var(--white);
+      font-size: clamp(14px, 2vh, 18px);
+      margin: 2px 0;
+    }
+
     #reader {
-      width: 100%;
-      max-width: 350px;
-      margin: 20px auto;
+      width: min(100%, 290px);
+      height: auto;
+      max-height: 31vh;
+      max-height: 31dvh;
+      overflow: hidden;
+      margin: 3px auto;
+      flex-shrink: 1;
     }
+
+    #reader video {
+      display: block;
+      width: 100% !important;
+      max-height: 30vh !important;
+      max-height: 30dvh !important;
+      object-fit: contain;
+    }
+
     #scanStatus {
-      color: #e0c47b;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: clamp(12px, 1.8vh, 16px);
+      margin: 2px 0;
+      overflow-wrap: anywhere;
     }
+
     .verse {
-      margin-top: 30px;
-      font-style: italic;
-      font-size: 14px;
+      color: var(--gold) !important;
+      font-family: Georgia, serif;
+      font-size: clamp(13px, 2vh, 18px);
+      line-height: 1.35;
+      margin: 2px 0;
+      max-width: 650px;
+    }
+
+    .verse p {
+      color: var(--gold) !important;
+      margin: 3px 0;
+    }
+
+    .verse-reference {
+      color: var(--gold) !important;
+      font-size: clamp(12px, 1.7vh, 15px);
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    @media (max-height: 650px) {
+      .screen {
+        padding: 9px 14px;
+      }
+
+      .logo {
+        max-height: 18dvh;
+      }
+
+      #reader {
+        width: min(100%, 240px);
+        max-height: 27dvh;
+      }
+
+      #reader video {
+        max-height: 26dvh !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <main class="container">
-    <img class="logo"
-      src="https://drive.google.com/thumbnail?id=1wwG6RsZ-IIJ3s26eiOegq1c8eCnKvkNT&sz=w500"
-      alt="Logo de Dios Con Nosotros">
+  <main class="screen">
+
+    <img
+      class="logo"
+      src="https://drive.google.com/thumbnail?id=1wwG6RsZ-IIJ3s26eiOegq1c8eCnKvkNT&sz=w800"
+      alt="Iglesia Dios Con Nosotros"
+    >
 
     <h1>¡BIENVENIDOS!</h1>
 
-    <p>Escanee su tarjeta de membresía
-    para registrar su asistencia.</p>
+    <p class="instruction">
+      Escanee su tarjeta de membresía
+      para registrar su asistencia.
+    </p>
+
+    <p class="subtitle">
+      Registro de miembros y familias
+    </p>
 
     <div id="reader"></div>
-    <p id="scanStatus">Preparando cámara...</p>
 
-    <p>Registro de miembros y familias</p>
-
-    <p class="verse">
-      Yo me alegré con los que me decían:
-      A la casa de Jehová iremos.
-      <br>Salmos 122:1
+    <p id="scanStatus">
+      Preparando cámara...
     </p>
+
+    <div class="verse">
+      <p>
+        “Yo me alegré con los que me decían:
+        A la casa de Jehová iremos.”
+      </p>
+      <p class="verse-reference">
+        SALMOS 122:1
+      </p>
+    </div>
+
   </main>
 
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
   <script>
     const status = document.getElementById("scanStatus");
     let lastScan = "";
 
     async function startScanner() {
       if (typeof Html5Qrcode === "undefined") {
-        status.textContent = "No se pudo cargar el escáner.";
+        status.textContent =
+          "No se pudo cargar el escáner.";
         return;
       }
 
@@ -87,10 +203,15 @@
       try {
         await scanner.start(
           { facingMode: "environment" },
-          { fps: 10, qrbox: { width: 200, height: 200 } },
+          {
+            fps: 10,
+            qrbox: { width: 180, height: 180 }
+          },
           (decodedText) => {
             if (decodedText === lastScan) return;
+
             lastScan = decodedText;
+
             status.textContent =
               "Código detectado: " + decodedText;
           },
@@ -99,6 +220,7 @@
 
         status.textContent =
           "Cámara lista. Escanee su tarjeta.";
+
       } catch (error) {
         status.textContent =
           "No se pudo iniciar la cámara: " + error;
