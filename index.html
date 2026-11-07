@@ -212,6 +212,13 @@
     <option>Oracion</option>
     <option>Oracion y Estudio</option>
   </select>
+  <button
+  id="startServiceButton"
+  type="button"
+  style="display:block; margin:15px auto; padding:12px 24px; background:#D4AF37; color:#172033; border:none; border-radius:8px; font-weight:bold; cursor:pointer;"
+>
+  Iniciar Registro
+</button>
 </div>
     <h1>¡BIENVENIDOS!</h1>
 
@@ -297,6 +304,23 @@ document.getElementById("adminButton").addEventListener("click", function () {
     setup.hidden = true;
     setup.style.display = "none";
   }
+});
+</script>
+  <script>
+document.getElementById("startServiceButton").addEventListener("click", function () {
+  const service = document.getElementById("serviceType").value;
+
+  if (!service) {
+    alert("Por favor, seleccione un culto.");
+    return;
+  }
+
+  sessionStorage.setItem("selectedService", service);
+
+  document.getElementById("admin-service-setup").hidden = true;
+  document.getElementById("admin-service-setup").style.display = "none";
+
+  alert("Registro preparado para: " + service);
 });
 </script>
 </body>
