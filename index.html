@@ -221,7 +221,11 @@
 </button>
 </div>
     <h1>¡BIENVENIDOS!</h1>
-
+<div
+  id="activeService"
+  style="color:#D4AF37; font-size:16px; font-weight:500; text-align:center; margin:10px auto;"
+  hidden
+></div>
     <p class="instruction">
       Escanee su tarjeta de membresía
       para registrar su asistencia.
@@ -316,6 +320,9 @@ document.getElementById("startServiceButton").addEventListener("click", function
   }
 
   sessionStorage.setItem("selectedService", service);
+  const activeService = document.getElementById("activeService");
+activeService.textContent = "Culto: " + service;
+activeService.hidden = false;
 document.getElementById("adminButton").style.display = "none";
 
   document.getElementById("admin-service-setup").hidden = true;
