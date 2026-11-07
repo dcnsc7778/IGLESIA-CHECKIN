@@ -331,5 +331,18 @@ document.getElementById("adminButton").style.display = "none";
   alert("Registro preparado para: " + service);
 });
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const savedService = sessionStorage.getItem("selectedService");
+
+  if (savedService) {
+    const activeService = document.getElementById("activeService");
+    activeService.textContent = "Culto: " + savedService;
+    activeService.hidden = false;
+
+    document.getElementById("adminButton").style.display = "none";
+  }
+});
+</script>
 </body>
 </html>
