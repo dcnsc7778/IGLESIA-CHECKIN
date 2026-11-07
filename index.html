@@ -226,6 +226,14 @@
   style="color:#D4AF37; font-size:16px; font-weight:500; text-align:center; margin:10px auto;"
   hidden
 ></div>
+    <button
+  id="endServiceButton"
+  type="button"
+  hidden
+  style="display:none; margin:10px auto; padding:10px 18px; background:transparent; color:#D4AF37; border:1px solid #D4AF37; border-radius:8px; cursor:pointer;"
+>
+  Finalizar Registro
+</button>
     <p class="instruction">
       Escanee su tarjeta de membresía
       para registrar su asistencia.
@@ -342,6 +350,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("adminButton").style.display = "none";
   }
+});
+</script>
+  <script>
+document.getElementById("endServiceButton").addEventListener("click", function () {
+  const confirmed = confirm("¿Desea finalizar el registro de este culto?");
+
+  if (!confirmed) return;
+
+  sessionStorage.removeItem("selectedService");
+  window.location.reload();
 });
 </script>
 </body>
