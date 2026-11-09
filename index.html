@@ -288,6 +288,7 @@ let scanner = null;
             if (decodedText === lastScan) return;
 
             lastScan = decodedText;
+            scanner.pause(true);
             status.textContent =
               "Código detectado: " + decodedText;
           },
