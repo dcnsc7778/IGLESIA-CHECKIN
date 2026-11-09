@@ -268,14 +268,14 @@
   <script>
     const status = document.getElementById("scanStatus");
     let lastScan = "";
-
+let scanner = null;
     async function startScanner() {
       if (typeof Html5Qrcode === "undefined") {
         status.textContent = "No se pudo cargar el escáner.";
         return;
       }
 
-      const scanner = new Html5Qrcode("reader");
+      scanner = new Html5Qrcode("reader");
 
       try {
         await scanner.start(
